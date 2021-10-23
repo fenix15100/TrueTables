@@ -8,7 +8,7 @@ class StdObject(object):
 
 
 class TruetableGenerator(object):
-    def __init__(self, atoms=None, premises=None, ints=True):
+    def __init__(self, atoms=None, premises=None, ints=False):
         if not atoms:
             raise Exception('Atoms items are required')
         self.atoms = atoms
