@@ -28,14 +28,14 @@ class TruetableGenerator(object):
         for a, b in zip(self.atoms, args):
             setattr(g, a, b)
 
-        # add object context to any base variables in self.phrases
+        # add object context to any base variables in self.premises
         # then evaluate each
         eval_phrases = []
         for item in self.premises:
             item = self.atoms_regex.sub(r'g.\1', item)
             eval_phrases.append(eval(item))
 
-        # add the bases and evaluated phrases to create a single row
+        # add the atoms and evaluated premises to create a single row
         row = [getattr(g, b) for b in self.atoms] + eval_phrases
 
         # Mostrar valores de la tabla en formato (True/False) o (0/1)
