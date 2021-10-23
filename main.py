@@ -18,7 +18,7 @@ class TruetableGenerator(object):
         self.atoms = atoms
         self.premises = premises if premises is not None else []
         # generate the sets of booleans for the atoms
-        self.atoms_conditions = list(itertools.product([False, True],
+        self.atoms_conditions = list(itertools.product([True, False],
                                                        repeat=len(atoms)))
 
         # Patron regex utilizado para localizar los atomos cuando se evaluen las premisas
@@ -73,14 +73,11 @@ class TruetableGenerator(object):
 
     # si en todas las interpretaciones en que las premisas sean verdaderas y la conclusion es verdadera
     # el enunciado es valido y premisas consistentees.
-    def check1(self,interpretations):
-        for k,interpretation in enumerate(interpretations):
+    def check1(self, interpretations):
+        for k, interpretation in enumerate(interpretations):
             interpretations[k] = interpretation[len(self.atoms):]
 
         print(interpretations)
-
-
-
 
     def __str__(self):
         return str(self.table)
@@ -88,7 +85,7 @@ class TruetableGenerator(object):
 
 def main():
     init_colorama()
-    '''
+
     atoms = input("Introduce los atomos del enunciado separados por comas:\n")
     try:
         atoms = atoms.split(',')
@@ -103,9 +100,9 @@ def main():
     except Exception as e:
         print("premisas mal introducidos.!!")
         exit(1)
-    '''
-    truetable = TruetableGenerator(atoms=['A','B'],
-                                   premises=['not A','not B','not(A and B)'])
+
+    truetable = TruetableGenerator(atoms=atoms,
+                                   premises=premisas)
     print(truetable)
 
     truetable.analizeTable()
