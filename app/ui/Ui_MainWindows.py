@@ -9,18 +9,17 @@
 ################################################################################
 
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-                            QMetaObject, QObject, QPoint, QRect,
-                            QSize, QTime, QUrl, Qt)
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
 from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
-                           QCursor, QFont, QFontDatabase, QGradient,
-                           QIcon, QImage, QKeySequence, QLinearGradient,
-                           QPainter, QPalette, QPixmap, QRadialGradient,
-                           QTransform)
-from PySide6.QtWidgets import (QApplication, QLabel, QLineEdit, QMainWindow,
-                               QMenu, QMenuBar, QPushButton, QSizePolicy,
-                               QStatusBar, QTabWidget, QTextBrowser, QVBoxLayout,
-                               QWidget)
-
+    QCursor, QFont, QFontDatabase, QGradient,
+    QIcon, QImage, QKeySequence, QLinearGradient,
+    QPainter, QPalette, QPixmap, QRadialGradient,
+    QTransform)
+from PySide6.QtWidgets import (QApplication, QHeaderView, QLabel, QLineEdit,
+    QMainWindow, QMenu, QMenuBar, QPushButton,
+    QSizePolicy, QStatusBar, QTabWidget, QTableWidget,
+    QTableWidgetItem, QTextBrowser, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -62,12 +61,19 @@ class Ui_MainWindow(object):
         self.addPremisa = QPushButton(self.tabSetData)
         self.addPremisa.setObjectName(u"addPremisa")
         self.addPremisa.setGeometry(QRect(680, 100, 75, 24))
-        self.list_atomos_2 = QTextBrowser(self.tabSetData)
-        self.list_atomos_2.setObjectName(u"list_atomos_2")
-        self.list_atomos_2.setGeometry(QRect(460, 140, 256, 192))
+        self.list_premisas = QTextBrowser(self.tabSetData)
+        self.list_premisas.setObjectName(u"list_premisas")
+        self.list_premisas.setGeometry(QRect(460, 140, 256, 192))
+        self.generateTable = QPushButton(self.tabSetData)
+        self.generateTable.setObjectName(u"generateTable")
+        self.generateTable.setEnabled(True)
+        self.generateTable.setGeometry(QRect(390, 400, 141, 24))
         self.TabPane.addTab(self.tabSetData, "")
         self.tabTable = QWidget()
         self.tabTable.setObjectName(u"tabTable")
+        self.tableWidget = QTableWidget(self.tabTable)
+        self.tableWidget.setObjectName(u"tableWidget")
+        self.tableWidget.setGeometry(QRect(20, 30, 891, 681))
         self.TabPane.addTab(self.tabTable, "")
 
         self.verticalLayout.addWidget(self.TabPane)
@@ -95,8 +101,8 @@ class Ui_MainWindow(object):
 
         self.TabPane.setCurrentIndex(0)
 
-        QMetaObject.connectSlotsByName(MainWindow)
 
+        QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
     def retranslateUi(self, MainWindow):
@@ -108,10 +114,10 @@ class Ui_MainWindow(object):
         self.addAtom.setText(QCoreApplication.translate("MainWindow", u"Add", None))
         self.Premisas.setText(QCoreApplication.translate("MainWindow", u"Premisas", None))
         self.addPremisa.setText(QCoreApplication.translate("MainWindow", u"Add", None))
-        self.TabPane.setTabText(self.TabPane.indexOf(self.tabSetData),
-                                QCoreApplication.translate("MainWindow", u"Tab 1", None))
-        self.TabPane.setTabText(self.TabPane.indexOf(self.tabTable),
-                                QCoreApplication.translate("MainWindow", u"Tab 2", None))
+        self.generateTable.setText(QCoreApplication.translate("MainWindow", u"Generate Table", None))
+        self.TabPane.setTabText(self.TabPane.indexOf(self.tabSetData), QCoreApplication.translate("MainWindow", u"Tab 1", None))
+        self.TabPane.setTabText(self.TabPane.indexOf(self.tabTable), QCoreApplication.translate("MainWindow", u"Tab 2", None))
         self.File.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
         self.Exit.setTitle(QCoreApplication.translate("MainWindow", u"Exit", None))
     # retranslateUi
+
